@@ -9,7 +9,11 @@ prepare:
 			postgres
 
 test:
-	PGUSER=postgres PGDATABASE=postgres PGPASSWORD=pwd PGPORT=5433 node ./test.js
+	PGUSER=postgres PGDATABASE=postgres PGPASSWORD=pwd PGPORT=5433 node ./test.js \
+	| tee results/runs/`date +%s`.ndjson
+
+report:
+	node report.js
 
 purge:
 	docker stop some-postgres
