@@ -1,23 +1,55 @@
 Test Objective
---------------
+==============
 
-Compare different field types indexes in terms of insert and select speed using different hardware and table sizes.
+Compare different field types indexes (mainly uuid vs bigint) in terms of insert and select speed using different hardware and table sizes.
 Results can be seen as diagrams in report directory, raw results in results directory.
 
+Results
+=======
+
+Select random row using index
+-----------------------------
+
+![select p95](report/select_p95_n.png)
+![select tps](report/select_tps_n.png)
+
+[1] - Number from bigint 1% - It selects random row from 1000 biggest values.
+
+Conclusions:
+- Poor correlation to size of table (Todo: try on bigger tables)
+- Selecting random value from whole table behaves similarly on all field types
+- Selecting values from narrow range is significantly better
+
+Todos:
+- Test on bigger tables (this requires different hardware because tests were rather slow)
+- Retest ulid, maybe it wasn't fully random
+- Retest bigint 1% but for bigger sets
+
+Insert single row into table with index
+---------------------------------------
+
+![insert p95](report/insert_p95_n.png)
+
+Inserting many rows at once into table with index
+-------------------------------------------------
+
+Experimentally determined that inserting 2000 rows at once was most effective.
+
+![batch2000 p95](report/batch2000_insert_p95_n.png)
 
 Usage
------
+=====
 
-Preparations before testing
+Preparations before testing (docker, make, nodejs are required)
 ```
 $ make install  # installs dependencies
-$ make prepare  # starts postgres docker container
+$ make prepare  # start postgres docker container
 ```
 
 Running tests
 
 ```
-$ make test
+$ make test # run multiple times for bigger data sets
 ```
 
 Creating report (requires gnuplot)

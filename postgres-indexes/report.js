@@ -25,13 +25,18 @@ async function main() {
 }
 
 function plot(runs, name, x, y) {
+  const explain = (term) => ({
+    'tps': 'transactions per second',
+    'p95': '95 perentile',
+  }[term] || term)
+
   const p = pivot(runs.filter(r => r.name === name), 'serie', x, y)
   const seriesCount = p[0].length
   const series = [...new Array(seriesCount).keys()].map(i => 
     `'tmp.dat' using 1:${i+2} with lines title columnhead(${i+1})`).join(',')
   try { fs.mkdirSync('report', { recursive: true }); } catch (ex) {}
-  const title = `${y} of ${name} to ${x}`
-  const fileName = `report/${name}_${y}_${x}`
+  const title = `${explain(y)} of ${name} to ${explain(x)}`
+  const fileName = `report/${name.replace(/ /g, '_')}_${y}_${x}`
   fs.writeFileSync('tmp.dat', table(p))
   fs.writeFileSync('plot.pg', `
 reset
@@ -41,8 +46,8 @@ set output "${fileName}.png"
 set title "${title}"
 set lmargin 9
 set rmargin 2
-set xlabel "${x}"
-set ylabel "${y}"
+set xlabel "${explain(x)}"
+set ylabel "${explain(y)}"
 set xtics
 plot ${series}
 `)
