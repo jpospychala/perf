@@ -1,0 +1,13 @@
+{"env":"x220-sda1","name":"batch2000","serie":"insert uuid to uuid","n":"64630000","tps":1903.2284464136515,"min":753,"max":1560,"p95":1255}
+{"env":"x220-sda1","name":"batch2000","serie":"insert uuid to varchar","n":"64630000","tps":1595.9271938014188,"min":1049,"max":1916,"p95":1477}
+{"env":"x220-sda1","name":"batch2000","serie":"insert ulid to varchar","n":"64630000","tps":14535.940111926739,"min":124,"max":193,"p95":149}
+{"env":"x220-sda1","name":"batch2000","serie":"insert number to bigint","n":"64630000","tps":141663.12508853944,"min":11,"max":45,"p95":19}
+{"env":"x220-sda1","name":"insert","serie":"uuid to uuid","n":"64640000","tps":852.7330092947898,"min":0,"max":25,"p95":2}
+{"env":"x220-sda1","name":"insert","serie":"uuid to varchar","n":"64640000","tps":725.7947452460444,"min":0,"max":74,"p95":2}
+{"env":"x220-sda1","name":"insert","serie":"ulid to varchar","n":"64640000","tps":1658.374792703151,"min":0,"max":14,"p95":1}
+{"env":"x220-sda1","name":"insert","serie":"number to bigint","n":"64640000","tps":1808.6453246518358,"min":0,"max":11,"p95":1}
+{"env":"x220-sda1","name":"select","serie":"uuid from uuid","n":"64640000","tps":1026.694045174538,"min":0,"max":17,"p95":2}
+{"env":"x220-sda1","name":"select","serie":"uuid from varchar","n":"64640000","tps":886.9966294128083,"min":0,"max":21,"p95":2}
+{"env":"x220-sda1","name":"select","serie":"ulid from varchar","n":"64640000","tps":1521.6068167985393,"min":0,"max":16,"p95":1}
+{"env":"x220-sda1","name":"select","serie":"number from bigint","n":"64640000","tps":737.0826269624825,"min":0,"max":14,"p95":2}
+{"env":"x220-sda1","name":"select","serie":"number from bigint 1%","n":"64640000","tps":1831.1664530305804,"min":0,"max":16,"p95":1}

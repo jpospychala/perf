@@ -1,47 +1,59 @@
 const fs = require('fs')
 const { execSync } = require('child_process')
 
-main()
+const dir = process.argv[2] || ''
+const OUTPUT = process.argv[3] || 'svg'
 
-async function main() {
-  const runs = fs.readdirSync('results/runs')
+main(dir)
+
+async function main(dir) {
+  const runs = fs.readdirSync(`${dir}results/runs`)
     .reduce((acc, run) => acc.concat(
-        fs.readFileSync(`results/runs/${run}`).toString().split('\n')
+        fs.readFileSync(`${dir}/results/runs/${run}`).toString().split('\n')
+        .filter(l => !!l)
         .map(l => { try { return JSON.parse(l) } catch (ex) {throw new Error(`${run}/${l}: ${ex}`);}})
       )
     , [])
-  const envs = fs.readdirSync('results/envs')
-    .map(env => JSON.parse(fs.readFileSync(`results/envs/${env}`).toString()))
+  const envSpecs = fs.readdirSync(`${dir}/results/envs`)
+    .map(env => JSON.parse(fs.readFileSync(`${dir}/results/envs/${env}`).toString()))
 
-  const names = runs.reduce((acc, r) => acc.includes(r.name) ? acc : acc.concat(r.name), [])
+  const envs = uniq(r => r.env, runs)
+  const names = uniq(r => r.name, runs)
   yaxes = ['tps', 'min', 'max', 'p95']
   xaxes = ['n']
   
-  names.forEach(name => 
-    xaxes.forEach(x =>
-      yaxes.forEach(y => plot(runs, name, x, y))
+  envs.forEach(env =>
+    names.forEach(name => 
+      xaxes.forEach(x =>
+        yaxes.forEach(y => {
+          const rows = runs.filter(r => r.name === name && r.env === env)
+          if (rows.length > 0) {
+            plot(rows, name, x, y, env, dir)
+          }
+        })
+      )
     )
   )
 }
 
-function plot(runs, name, x, y) {
+function plot(rows, name, x, y, suffix, dir) {
   const explain = (term) => ({
     'tps': 'transactions per second',
     'p95': '95 perentile',
   }[term] || term)
 
-  const p = pivot(runs.filter(r => r.name === name), 'serie', x, y)
+  const p = pivot(rows, 'serie', x, y)
   const seriesCount = p[0].length
   const series = [...new Array(seriesCount).keys()].map(i => 
     `'tmp.dat' using 1:${i+2} with lines title columnhead(${i+1})`).join(',')
   try { fs.mkdirSync('report', { recursive: true }); } catch (ex) {}
   const title = `${explain(y)} of ${name} to ${explain(x)}`
-  const fileName = `report/${name.replace(/ /g, '_')}_${y}_${x}`
-  fs.writeFileSync('tmp.dat', table(p))
-  fs.writeFileSync('plot.pg', `
+  const fileName = `${dir}/report/`+[name.replace(/ /g, '_'), y, x, suffix].join('_')
+  fs.writeFileSync(`${dir}/tmp.dat`, table(p))
+  fs.writeFileSync(`${dir}/plot.pg`, `
 reset
-set terminal png
-set output "${fileName}.png"
+set terminal ${OUTPUT}
+set output "${fileName}.${OUTPUT}"
 
 set title "${title}"
 set lmargin 9
@@ -51,9 +63,9 @@ set ylabel "${explain(y)}"
 set xtics
 plot ${series}
 `)
-  execSync('gnuplot plot.pg')
-  fs.unlinkSync('tmp.dat')
-  fs.unlinkSync('plot.pg')
+  execSync(`gnuplot ${dir}/plot.pg`)
+  fs.unlinkSync(`${dir}/tmp.dat`)
+  fs.unlinkSync(`${dir}/plot.pg`)
 }
 
 function pivot(input, colsCol, rowsCol, valCol) {
@@ -77,4 +89,8 @@ function pivot(input, colsCol, rowsCol, valCol) {
 
 function table(input) {
   return input.map(row => row.join(' ')).join('\n')
+}
+
+function uniq(fn, list) {
+  return list.reduce((acc, elem) => acc.includes(fn(elem)) ? acc : acc.concat(fn(elem)), [])
 }

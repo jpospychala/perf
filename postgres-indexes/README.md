@@ -10,8 +10,11 @@ Results
 Select random row using index
 -----------------------------
 
-![select p95](report/select_p95_n.png)
-![select tps](report/select_tps_n.png)
+![select p95](report/select_p95_n_x220-sdb1.svg)
+![select tps](report/select_tps_n_x220-sdb1.svg)
+
+![select p95](report/select_p95_n_x220-sda1.svg)
+![select tps](report/select_tps_n_x220-sda1.svg)
 
 [1] - Number from bigint 1% - It selects random row from 1000 biggest values.
 
@@ -28,14 +31,18 @@ Todos:
 Insert single row into table with index
 ---------------------------------------
 
-![insert p95](report/insert_p95_n.png)
+![insert p95](report/insert_p95_n_x220-sdb1.svg)
+
+![insert p95](report/insert_p95_n_x220-sda1.svg)
 
 Inserting many rows at once into table with index
 -------------------------------------------------
 
 Experimentally determined that inserting 2000 rows at once was most effective.
 
-![batch2000 p95](report/batch2000_insert_p95_n.png)
+![batch2000 p95](report/batch2000_p95_n_x220-sdb1.svg)
+
+![batch2000 p95](report/batch2000_p95_n_x220-sda1.svg)
 
 Usage
 =====

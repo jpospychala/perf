@@ -13,8 +13,13 @@ test:
 	| tee results/runs/`date +%s`.ndjson
 
 report:
-	node report.js
+	node ../tools/report.js ./ svg
+
+report_test:
+	node ../tools/report.js ./ png
 
 purge:
 	docker stop some-postgres
 	docker rm some-postgres
+
+.PHONY: report
