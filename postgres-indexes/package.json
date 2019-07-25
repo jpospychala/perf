@@ -9,8 +9,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "benchmark": "^2.1.4",
-    "microtime": "^3.0.0",
     "pg": "^7.11.0",
     "ulid": "^2.3.0",
     "uuid": "^3.3.2"

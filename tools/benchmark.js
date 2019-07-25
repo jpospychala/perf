@@ -1,8 +1,11 @@
+const fs = require('fs')
 
 module.exports.Benchmark = function Benchmark(name, options) {
   const defaults = {
-    count: 10000,
+    minRuns: 1000,
+    minRunTimeSecs: 60,
     transactionsPerTest: 1,
+    outFile: `results/${Date.now()}.ndjson`,
   }
   options = { ...defaults, ...options }
   const series = []
@@ -25,25 +28,27 @@ module.exports.Benchmark = function Benchmark(name, options) {
 
   async function test(msg, before, fn, tags) {
     const runs = []
-    for (let run of [...Array(options.count).keys()]) {
+    let total = 0
+    let idx = 0
+    while (total < options.minRunTimeSecs*1000 && idx < options.minRuns) {
       const beforeResult = before && await before()
-      const runNow = new Date().getTime()
-      await fn(beforeResult)
-      const runAfter = new Date().getTime()
+      const runNow = Date.now()
+      await fn(beforeResult, {run: 0, idx: idx++})
+      const runAfter = Date.now()
       runs.push(runAfter-runNow)
+      total = total + runAfter-runNow
     }
-    const total = runs.reduce((sum, i) => sum+i, 0)
     runs.sort((a,b) => a - b)
     const min = runs[0]
     const max = runs[runs.length - 1]
     const p95 = runs[Math.floor(runs.length * 0.95)]
-    console.log(JSON.stringify({
+    fs.appendFileSync(options.outFile, JSON.stringify({
       ...msg,
       ...tags,
-      tps: options.transactionsPerTest*options.count*1000/total,
+      tps: Math.round(options.transactionsPerTest*runs.length*1000/total),
       min,
       max,
       p95
-    }))
+    }))+'\n'
   }
 }
