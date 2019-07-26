@@ -1,10 +1,7 @@
 Test Objective
 ==============
 
-1. What is the difference between inserting to table with index vs without index?
- a) similar values
- b) random values
-2. What is the difference between inserting single object vs many objects?
+What is the difference between inserting to table with index vs without index?
  a) similar values
  b) random values
 

@@ -1,4 +1,4 @@
-build:
+install:
 	npm install
 
 prepare:
