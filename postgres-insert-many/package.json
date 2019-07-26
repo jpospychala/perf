@@ -1,0 +1,12 @@
+{
+  "name": "postgres-insert-into-index",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "author": " Jacek Pospychala <jacek.pospychala@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "pg": "^7.11.0",
+    "uuid": "^3.3.2"
+  }
+}

@@ -1,0 +1,12 @@
+{"name":"batch insert","serie":"batch 1","env":"test","n":"68528326","tps":255,"min":2,"max":284,"p95":10}
+{"name":"batch insert","serie":"batch 10","env":"test","n":"68600676","tps":2411,"min":2,"max":124,"p95":10}
+{"name":"batch insert","serie":"batch 100","env":"test","n":"69124676","tps":17465,"min":2,"max":137,"p95":11}
+{"name":"batch insert","serie":"batch 200","env":"test","n":"69902476","tps":25925,"min":3,"max":450,"p95":13}
+{"name":"batch insert","serie":"batch 500","env":"test","n":"71137976","tps":41182,"min":4,"max":547,"p95":19}
+{"name":"batch insert","serie":"batch 1000","env":"test","n":"72645976","tps":50248,"min":7,"max":960,"p95":31}
+{"name":"batch insert","serie":"batch 2000","env":"test","n":"74689976","tps":68074,"min":10,"max":785,"p95":54}
+{"name":"batch insert","serie":"batch 3000","env":"test","n":"77041976","tps":78322,"min":14,"max":729,"p95":74}
+{"name":"batch insert","serie":"batch 4000","env":"test","n":"79797976","tps":91833,"min":20,"max":334,"p95":84}
+{"name":"batch insert","serie":"batch 5000","env":"test","n":"82557976","tps":91920,"min":23,"max":671,"p95":118}
+{"name":"batch insert","serie":"batch 10000","env":"test","n":"85467976","tps":97000,"min":53,"max":1300,"p95":195}
+{"name":"batch insert","serie":"batch 15000","env":"test","n":"88422976","tps":98438,"min":76,"max":1262,"p95":354}
