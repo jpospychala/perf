@@ -14,8 +14,8 @@ async function main(dir) {
         .map(l => { try { return JSON.parse(l) } catch (ex) {throw new Error(`${run}/${l}: ${ex}`);}})
       )
     , [])
-  const envSpecs = fs.readdirSync(`${dir}/results/envs`)
-    .map(env => JSON.parse(fs.readFileSync(`${dir}/results/envs/${env}`).toString()))
+  //const envSpecs = fs.readdirSync(`${dir}/results/envs`)
+  //  .map(env => JSON.parse(fs.readFileSync(`${dir}/results/envs/${env}`).toString()))
 
   const envs = uniq(r => r.env, runs)
   const names = uniq(r => r.name, runs)
@@ -44,8 +44,9 @@ function plot(rows, name, x, y, suffix, dir) {
 
   const p = pivot(rows, 'serie', x, y)
   const seriesCount = p[0].length
+  const linestyle = p[0].length < 8 ? 'lines' : 'linespoints'
   const series = [...new Array(seriesCount).keys()].map(i => 
-    `'tmp.dat' using 1:${i+2} with lines title columnhead(${i+1})`).join(',')
+    `'tmp.dat' using 1:${i+2} with ${linestyle} title columnhead(${i+1})`).join(',')
   try { fs.mkdirSync('report', { recursive: true }); } catch (ex) {}
   const title = `${explain(y)} of ${name} to ${explain(x)}`
   const fileName = `${dir}/report/`+[name.replace(/ /g, '_'), y, x, suffix].join('_')
@@ -83,7 +84,7 @@ function pivot(input, colsCol, rowsCol, valCol) {
     table[rowName][colName] = val
   })
   const rowNames = Object.keys(table)
-  const rows = rowNames.map(rowName => [rowName, ...colNames.map(col => table[rowName][col])])
+  const rows = rowNames.map(rowName => [rowName, ...colNames.map(col => table[rowName][col]||'-')])
   return [colNames.map(c => `"${c}"`), ...rows]
 }
 

@@ -1,13 +1,14 @@
 const fs = require('fs')
+const path = require('path')
 
 module.exports.Benchmark = function Benchmark(name, options) {
   const defaults = {
-    minRuns: 1000,
-    minRunTimeSecs: 60,
+    minRuns: 100,
+    minRunTimeSecs: 30,
     transactionsPerTest: 1,
-    outFile: `results/${Date.now()}.ndjson`,
+    outFile: `results/runs/${Date.now()}.ndjson`,
   }
-  options = { ...defaults, ...options }
+  const benchmarkOptions = { ...defaults, ...options }
   const series = []
 
   this.add = function(name, serie) {
@@ -21,16 +22,23 @@ module.exports.Benchmark = function Benchmark(name, options) {
         {name, serie: serie.serie},
         serie.before,
         serie.fn,
-        serie.tags
+        serie.tags,
+        serie.tagsFn,
+        serie.options || {}
       )
     }
   }
 
-  async function test(msg, before, fn, tags) {
+  async function test(msg, before, fn, tags, tagsFn, serieOptions) {
+    const testOptions = {
+      ...benchmarkOptions,
+      ...serieOptions
+    }
+    console.log(`Running ${msg.name} ${msg.serie}`)
     const runs = []
     let total = 0
     let idx = 0
-    while (total < options.minRunTimeSecs*1000 && idx < options.minRuns) {
+    while (total < testOptions.minRunTimeSecs*1000 || idx < testOptions.minRuns) {
       const beforeResult = before && await before()
       const runNow = Date.now()
       await fn(beforeResult, {run: 0, idx: idx++})
@@ -42,13 +50,15 @@ module.exports.Benchmark = function Benchmark(name, options) {
     const min = runs[0]
     const max = runs[runs.length - 1]
     const p95 = runs[Math.floor(runs.length * 0.95)]
-    fs.appendFileSync(options.outFile, JSON.stringify({
+    try { fs.mkdirSync(path.dirname(testOptions.outFile), { recursive: true }); } catch (ex) {}
+    fs.appendFileSync(testOptions.outFile, JSON.stringify({
       ...msg,
       ...tags,
-      tps: Math.round(options.transactionsPerTest*runs.length*1000/total),
+      ...tagsFn && await tagsFn(),
+      tps: Math.round(testOptions.transactionsPerTest*runs.length*1000/total),
       min,
       max,
       p95
-    }))+'\n'
+    })+'\n')
   }
 }
