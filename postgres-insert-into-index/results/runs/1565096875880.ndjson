@@ -1,0 +1,4 @@
+{"name":"insert","serie":"random with index","env":"do4gb","n":"155378296","tps":369,"min":1,"max":26,"p95":4}
+{"name":"insert","serie":"random with no index","env":"do4gb","n":"155595800","tps":515,"min":1,"max":21,"p95":3}
+{"name":"insert","serie":"sorted with index","env":"do4gb","n":"155562526","tps":446,"min":1,"max":27,"p95":4}
+{"name":"insert","serie":"sorted with no index","env":"do4gb","n":"155578385","tps":362,"min":1,"max":28,"p95":5}

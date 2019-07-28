@@ -1,0 +1,8 @@
+{
+  "name": "DigitalOcean 4GB 80GB",
+  "mem": 4039568,
+  "swap": 0,
+  "buffered_disk_Reads_mb/s": 830,
+  "cpu_name": "Intel(R) Xeon(R) CPU E5-2650L v3 @ 1.80GHz",
+  "cpu_bogomips": 3599
+}
