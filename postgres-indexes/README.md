@@ -28,39 +28,14 @@ Todos:
 - Retest ulid, maybe it wasn't fully random
 - Retest bigint 1% but for bigger sets
 
-Insert single row into table with index
----------------------------------------
-
-![insert p95](report/insert_p95_n_x220-sdb1.svg)
-
-![insert p95](report/insert_p95_n_x220-sda1.svg)
-
-Inserting many rows at once into table with index
--------------------------------------------------
-
-Experimentally determined that inserting 2000 rows at once was most effective.
-
-![batch2000 p95](report/batch2000_p95_n_x220-sdb1.svg)
-
-![batch2000 p95](report/batch2000_p95_n_x220-sda1.svg)
-
 Usage
 =====
 
-Preparations before testing (docker, make, nodejs are required)
+docker, make, nodejs are required
 ```
-$ make install  # installs dependencies
+$ make install  # installs nodejs dependencies
 $ make prepare  # start postgres docker container
-```
-
-Running tests
-
-```
-$ make test # run multiple times for bigger data sets
-```
-
-Creating report (requires gnuplot)
-
-```
-$ make report
+$ make test     # run tests, run multiple times for bigger data sets
+$ make report   # produce charts from test results
+$ make purge    # cleanup leftover files produced during tests (eg. databases)
 ```

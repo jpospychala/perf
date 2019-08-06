@@ -84,7 +84,7 @@ function pivot(input, colsCol, rowsCol, valCol) {
     table[rowName][colName] = val
   })
   const rowNames = Object.keys(table)
-  const rows = rowNames.map(rowName => [rowName, ...colNames.map(col => table[rowName][col]||'-')])
+  const rows = rowNames.map(rowName => [rowName, ...colNames.map(col => table[rowName].hasOwnProperty(col) ? table[rowName][col] : '-')])
   return [colNames.map(c => `"${c}"`), ...rows]
 }
 
