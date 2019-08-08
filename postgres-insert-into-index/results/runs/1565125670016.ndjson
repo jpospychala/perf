@@ -1,0 +1,4 @@
+{"name":"insert","serie":"random with index","env":"x220-sda1","n":"9075601","tps":1041,"min":0,"max":41,"p95":2}
+{"name":"insert","serie":"random with no index","env":"x220-sda1","n":"9124574","tps":2129,"min":0,"max":15,"p95":1}
+{"name":"insert","serie":"sorted with index","env":"x220-sda1","n":"9119539","tps":2009,"min":0,"max":25,"p95":1}
+{"name":"insert","serie":"sorted with no index","env":"x220-sda1","n":"9119298","tps":1909,"min":0,"max":18,"p95":1}
