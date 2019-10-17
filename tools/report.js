@@ -43,12 +43,38 @@ function plot(rows, name, x, y, suffix, dir) {
   }[term] || term)
 
   const p = pivot(rows, 'serie', x, y)
+
+  const style =  (p.length === 2 /* header + 1 row */) ? 'bars' : 'lines'
+  
   const seriesCount = p[0].length
-  const linestyle = p[0].length < 8 ? 'lines' : 'linespoints'
-  const series = [...new Array(seriesCount).keys()].map(i => 
-    `'tmp.dat' using 1:${i+2} with ${linestyle} title columnhead(${i+1})`).join(',')
+
+  const styles = {
+    'bars': {
+      title: `${name} ${explain(y)}`,
+      series: () => [...new Array(seriesCount).keys()].map(i => 
+        `'tmp.dat' using ${i+2} title columnhead(${i+1})`).join(','),
+      gpstyles: `set style data histogram
+set style histogram cluster gap 1
+set style fill solid border -1
+set boxwidth 0.9
+set xtics format ""
+`
+    },
+    'lines': {
+      title: `${explain(y)} of ${name} to ${explain(x)}`,
+      series: () => [...new Array(seriesCount).keys()].map(i => {
+        const linestyle = p[0].length < 8 ? 'lines' : 'linespoints'
+        return `'tmp.dat' using 1:${i+2} with ${linestyle} title columnhead(${i+1})`
+        }).join(','),
+      gpstyles: `
+set xtics
+set xlabel "${explain(x)}"`
+    }
+  }
+
+  const { title, gpstyles, series } = styles[style]
+    
   try { fs.mkdirSync('report', { recursive: true }); } catch (ex) {}
-  const title = `${explain(y)} of ${name} to ${explain(x)}`
   const fileName = `${dir}/report/`+[name.replace(/ /g, '_'), y, x, suffix].join('_')
   fs.writeFileSync(`${dir}/tmp.dat`, table(p))
   fs.writeFileSync(`${dir}/plot.pg`, `
@@ -59,10 +85,9 @@ set output "${fileName}.${OUTPUT}"
 set title "${title}"
 set lmargin 9
 set rmargin 2
-set xlabel "${explain(x)}"
+${gpstyles}
 set ylabel "${explain(y)}"
-set xtics
-plot ${series}
+plot ${series()}
 `)
   execSync(`gnuplot ${dir}/plot.pg`)
   fs.unlinkSync(`${dir}/tmp.dat`)
