@@ -3,7 +3,7 @@ const path = require('path')
 
 module.exports.Benchmark = function Benchmark(name, options) {
   const defaults = {
-    minRuns: 100,
+    minRuns: 10,
     minRunTimeSecs: 30,
     transactionsPerTest: 1,
     outFile: `results/runs/${Date.now()}.ndjson`,
@@ -39,8 +39,8 @@ module.exports.Benchmark = function Benchmark(name, options) {
     let total = 0
     let idx = 0
     while (total < testOptions.minRunTimeSecs*1000 || idx < testOptions.minRuns) {
-      const beforeResult = before && await before()
       const runNow = Date.now()
+      const beforeResult = before && await before()
       await fn(beforeResult, {run: 0, idx: idx++})
       const runAfter = Date.now()
       runs.push(runAfter-runNow)

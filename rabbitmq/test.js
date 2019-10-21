@@ -13,7 +13,7 @@ async function main() {
 }
 
 async function test_prefetch() {
-  const n = 1000
+  const n = 10000
   await new Benchmark('prefetch', { transactionsPerTest: n })
     .add(`1`, {
       before: () => publishMessages({n}),
@@ -23,17 +23,37 @@ async function test_prefetch() {
     .add(`10`, {
       before: () => publishMessages({n}),
       fn: () => consumeMessages({ prefetch: 10, n }),
-      tags: {...env, n: 10 },
+      tags: {...env, n: 1 },
     })
     .add(`100`, {
       before: () => publishMessages({n}),
       fn: () => consumeMessages({ prefetch: 100, n }),
-      tags: {...env, n: 100 },
+      tags: {...env, n: 1 },
+    })
+    .add(`unlimited`, {
+      before: () => publishMessages({n}),
+      fn: () => consumeMessages({ prefetch: undefined, n }),
+      tags: {...env, n: 1 },
+    })
+    .add(`unlimited noAck`, {
+      before: () => publishMessages({n}),
+      fn: () => consumeMessages({ prefetch: undefined, n, noAck: true }),
+      tags: {...env, n: 1 },
+    })
+    .add(`1 persistent msgs`, {
+      before: () => publishMessages({n, persistent: true}),
+      fn: () => consumeMessages({ prefetch: 1, n }),
+      tags: {...env, n: 1 },
+    })
+    .add(`unlimited persistent msgs`, {
+      before: () => publishMessages({n, persistent: true}),
+      fn: () => consumeMessages({ prefetch: undefined, n }),
+      tags: {...env, n: 1 },
     })
     .execute()
 }
 
-function publishMessages({n}) {
+function publishMessages({n, persistent}) {
   return new Promise(async (resolve, reject) => {
     const conn = await amqlib.connect('amqp://localhost')
     const ch = await conn.createChannel()
@@ -41,7 +61,7 @@ function publishMessages({n}) {
     let sent = 0
     const sendUntilFull = () => {
       while (sent < n) {
-        const keepSending = ch.publish('', q, Buffer.from('something to do'))
+        const keepSending = ch.publish('', q, Buffer.from('something to do'), {persistent})
         sent++
         if (!keepSending) {
           return
@@ -57,7 +77,7 @@ function publishMessages({n}) {
   })
 }
 
-function consumeMessages({prefetch, n}) {
+function consumeMessages({prefetch, n, noAck}) {
   return new Promise(async (resolve, reject) => {
     const conn = await amqlib.connect('amqp://localhost')
     const ch = await conn.createChannel()
@@ -67,11 +87,11 @@ function consumeMessages({prefetch, n}) {
     ch.consume(q, function(msg) {
       if (msg !== null) {
         count++
-        ch.ack(msg);
+        noAck || ch.ack(msg);
         if (count === n) {
           conn.close().then(resolve)
         }
       }
-    })
+    }, { noAck })
   })
 }
