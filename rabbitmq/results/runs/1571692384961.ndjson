@@ -1,7 +1,0 @@
-{"name":"prefetch","serie":"1","env":"test","n":100,"tps":2606,"min":3575,"max":4621,"p95":4621}
-{"name":"prefetch","serie":"10","env":"test","n":100,"tps":4609,"min":2084,"max":2270,"p95":2270}
-{"name":"prefetch","serie":"100","env":"test","n":100,"tps":5542,"min":1714,"max":1861,"p95":1861}
-{"name":"prefetch","serie":"unlimited","env":"test","n":100,"tps":5771,"min":1649,"max":1791,"p95":1791}
-{"name":"prefetch","serie":"unlimited noAck","env":"test","n":100,"tps":6612,"min":1482,"max":1558,"p95":1558}
-{"name":"prefetch","serie":"1 persistent msgs","env":"test","n":100,"tps":2400,"min":3831,"max":4534,"p95":4534}
-{"name":"prefetch","serie":"unlimited persistent msgs","env":"test","n":100,"tps":4961,"min":1921,"max":2198,"p95":2198}

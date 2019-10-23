@@ -38,8 +38,10 @@ async function main(dir) {
 
 function plot(rows, name, x, y, suffix, dir) {
   const explain = (term) => ({
-    'tps': 'transactions per second',
-    'p95': '95 perentile',
+    'tps': 'transactions per second [n]',
+    'p95': '95 perentile [ms]',
+    'min': 'min [ms]',
+    'max': 'max [ms]',
   }[term] || term)
 
   const p = pivot(rows, 'serie', x, y)

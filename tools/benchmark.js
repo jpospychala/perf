@@ -56,9 +56,9 @@ module.exports.Benchmark = function Benchmark(name, options) {
       ...tags,
       ...tagsFn && await tagsFn(),
       tps: Math.round(testOptions.transactionsPerTest*runs.length*1000/total),
-      min,
-      max,
-      p95
+      min: (min/testOptions.transactionsPerTest).toFixed(4),
+      max: (max/testOptions.transactionsPerTest).toFixed(4),
+      p95: (p95/testOptions.transactionsPerTest).toFixed(4)
     })+'\n')
   }
 }
