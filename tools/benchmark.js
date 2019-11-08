@@ -38,9 +38,10 @@ module.exports.Benchmark = function Benchmark(name, options) {
     const runs = []
     let total = 0
     let idx = 0
-    while (total < testOptions.minRunTimeSecs*1000 || idx < testOptions.minRuns) {
-      const runNow = Date.now()
+    const start = Date.now()
+    while ((Date.now() - start) < testOptions.minRunTimeSecs*1000 && idx < testOptions.minRuns) {
       const beforeResult = before && await before()
+      const runNow = Date.now()
       await fn(beforeResult, {run: 0, idx: idx++})
       const runAfter = Date.now()
       runs.push(runAfter-runNow)
