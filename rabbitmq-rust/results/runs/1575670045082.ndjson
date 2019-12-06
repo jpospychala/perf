@@ -1,0 +1,7 @@
+{"name":"prefetch","serie":"1","env":"test","n":1,"tps":1677,"min":"560","max":"679","p95":"675"}
+{"name":"prefetch","serie":"10","env":"test","n":1,"tps":2753,"min":"328","max":"423","p95":"393"}
+{"name":"prefetch","serie":"100","env":"test","n":1,"tps":2823,"min":"337","max":"373","p95":"369"}
+{"name":"prefetch","serie":"unlimited","env":"test","n":1,"tps":3325,"min":"277","max":"329","p95":"319"}
+{"name":"prefetch","serie":"unlimited noAck","env":"test","n":1,"tps":3855,"min":"244","max":"278","p95":"274"}
+{"name":"prefetch","serie":"1 persistent msgs","env":"test","n":1,"tps":1681,"min":"568","max":"638","p95":"624"}
+{"name":"prefetch","serie":"unlimited persistent msgs","env":"test","n":1,"tps":3327,"min":"281","max":"328","p95":"322"}
