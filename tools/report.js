@@ -21,9 +21,9 @@ async function main(dir) {
   const names = uniq(r => r.name, runs)
   yaxes = ['tps', 'min', 'max', 'p95']
   xaxes = ['n']
-  
+
   envs.forEach(env =>
-    names.forEach(name => 
+    names.forEach(name =>
       xaxes.forEach(x =>
         yaxes.forEach(y => {
           const rows = runs.filter(r => r.name === name && r.env === env)
@@ -47,13 +47,13 @@ function plot(rows, name, x, y, suffix, dir) {
   const p = pivot(rows, 'serie', x, y)
 
   const style =  (p.length === 2 /* header + 1 row */) ? 'bars' : 'lines'
-  
+
   const seriesCount = p[0].length
 
   const styles = {
     'bars': {
       title: `${name} ${explain(y)}`,
-      series: () => [...new Array(seriesCount).keys()].map(i => 
+      series: () => [...new Array(seriesCount).keys()].map(i =>
         `'tmp.dat' using ${i+2} title columnhead(${i+1})`).join(','),
       gpstyles: `set style data histogram
 set style histogram cluster gap 1
@@ -75,7 +75,7 @@ set xlabel "${explain(x)}"`
   }
 
   const { title, gpstyles, series } = styles[style]
-    
+
   try { fs.mkdirSync('report', { recursive: true }); } catch (ex) {}
   const fileName = `${dir}/report/`+[name.replace(/ /g, '_'), y, x, suffix].join('_')
   fs.writeFileSync(`${dir}/tmp.dat`, table(p))
@@ -103,7 +103,7 @@ function pivot(input, colsCol, rowsCol, valCol) {
     const colName = row[colsCol]
     const rowName = row[rowsCol]
     const val = row[valCol]
-    
+
     table[rowName] = table[rowName] || {}
     if (! colNames.includes(colName)) {
       colNames.push(colName)

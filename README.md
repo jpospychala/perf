@@ -18,3 +18,4 @@ Available benchmarks
 * [Rabbitmq: prefetch - node.js/amqplib](rabbitmq/README.md)
 * [Rabbitmq: prefetch - node.js/amqp](rabbitmq_node-amqp/README.md)
 * [Rabbitmq: prefetch - rust](rabbitmq-rust/README.md)
+* [Mongodb: Text search vs regex](mongo-indexes/README.md)
