@@ -1,0 +1,17 @@
+{
+  "name": "mongo-indexes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --bail"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.6.1"
+  },
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
