@@ -58,7 +58,6 @@ function plot(rows, name, x, y, suffix, dir) {
       gpstyles: `set style data histogram
 set style histogram cluster gap 1
 set style fill solid border -1
-set boxwidth 0.9
 set xtics format ""
 `
     },
@@ -69,7 +68,7 @@ set xtics format ""
         return `'tmp.dat' using 1:${i+2} with ${linestyle} title columnhead(${i+1})`
         }).join(','),
       gpstyles: `
-set xtics
+      set xtics format ""
 set xlabel "${explain(x)}"`
     }
   }
@@ -81,12 +80,13 @@ set xlabel "${explain(x)}"`
   fs.writeFileSync(`${dir}/tmp.dat`, table(p))
   fs.writeFileSync(`${dir}/plot.pg`, `
 reset
-set terminal ${OUTPUT}
+set terminal ${OUTPUT} size 800,400 background rgb 'white'
 set output "${fileName}.${OUTPUT}"
 
 set title "${title}"
 set lmargin 9
-set rmargin 2
+set rmargin 30
+set key outside
 ${gpstyles}
 set ylabel "${explain(y)}"
 plot ${series()}
