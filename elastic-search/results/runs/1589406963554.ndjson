@@ -1,3 +1,0 @@
-{"name":"search","serie":"query match","env":"test","n":1,"tps":14,"min":"16.0000","max":"217.0000","p95":"217.0000"}
-{"name":"search","serie":"query regexp prefix","env":"test","n":1,"tps":105,"min":"8.0000","max":"10.0000","p95":"10.0000"}
-{"name":"search","serie":"query wildcard prefix","env":"test","n":1,"tps":270,"min":"3.0000","max":"5.0000","p95":"5.0000"}

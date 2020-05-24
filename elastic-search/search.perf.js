@@ -67,7 +67,7 @@ async function test_search(client) {
         body: {
           query: {
             regexp: {
-              email: `${samples[idx]}.substring(0, 5).*`
+              email: `${samples[idx].substring(0, 5)}.*`
             }
           }
         }
@@ -80,7 +80,7 @@ async function test_search(client) {
         body: {
           query: {
             wildcard: {
-              email: `${samples[idx]}.substring(0, 5)*`
+              email: `${samples[idx].substring(0, 5)}*`
             }
           }
         }
