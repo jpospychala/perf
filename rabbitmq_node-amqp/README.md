@@ -6,19 +6,18 @@ Message consumer throughput for different prefetch settings
 Results
 =======
 
-![prefetch tps](report/prefetch_tps_n_test.svg)
-![prefetch p95](report/prefetch_p95_n_test.svg)
-![prefetch min](report/prefetch_min_n_test.svg)
-![prefetch max](report/prefetch_max_n_test.svg)
+![prefetch tps](perf-lane/prefetch_tps_n_unknown.svg)
+![prefetch p95](perf-lane/prefetch_p95_n_unknown.svg)
+![prefetch min](perf-lane/prefetch_min_n_unknown.svg)
+![prefetch max](perf-lane/prefetch_max_n_unknown.svg)
 
 Usage
 =====
 
 docker, make, nodejs are required
 ```
-$ make install  # installs nodejs dependencies
+$ make build    # installs nodejs dependencies
 $ make prepare  # start rabbitmq docker container
 $ make test     # run tests
-$ make report   # produce charts from test results
 $ make purge    # cleanup leftover files produced during tests (eg. databases)
 ```

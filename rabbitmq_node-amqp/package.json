@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "amqp": "^0.2.7"
+    "amqp": "^0.2.7",
+    "perf-lane": "^1.0.3"
   }
 }

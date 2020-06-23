@@ -1,0 +1,7 @@
+{"name":"prefetch","test":"1","n":1,"runs":36,"env":"unknown","min":"0.3270","max":"0.7130","p95":"0.6570","tps":2357}
+{"name":"prefetch","test":"10","n":1,"runs":118,"env":"unknown","min":"0.0900","max":"0.3150","p95":"0.2110","tps":7866}
+{"name":"prefetch","test":"100","n":1,"runs":143,"env":"unknown","min":"0.0760","max":"0.2010","p95":"0.1560","tps":9499}
+{"name":"prefetch","test":"unlimited","n":1,"runs":45,"env":"unknown","min":"0.2480","max":"0.7810","p95":"0.4350","tps":2970}
+{"name":"prefetch","test":"unlimited noAck","n":1,"runs":372,"env":"unknown","min":"0.0290","max":"0.0770","p95":"0.0570","tps":24777}
+{"name":"prefetch","test":"1 persistent msgs","n":1,"runs":34,"env":"unknown","min":"0.2750","max":"0.7170","p95":"0.6080","tps":2221}
+{"name":"prefetch","test":"unlimited persistent msgs","n":1,"runs":35,"env":"unknown","min":"0.2740","max":"0.5100","p95":"0.4920","tps":2299}

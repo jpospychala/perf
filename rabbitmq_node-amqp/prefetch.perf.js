@@ -1,57 +1,44 @@
 const amqp = require('amqp')
-const { Benchmark } = require('../tools/benchmark')
+const test = require('perf-lane')
 
-const ENV_ID = process.env.ENV_ID || "test"
-const env = { env: ENV_ID }
+var q = 'tasks'
 
-var q = 'tasks';
+const n = 1000
 
-main()
+test.options.transactionsPerTest = n
 
-async function main() {
-  await test_prefetch()
-}
+test.beforeEach((p) => {
+  let persistent = /persistent/.test(p.test)
+  return publishMessages({ n, persistent })
+})
 
-async function test_prefetch() {
-  const n = 10000
-  await new Benchmark('prefetch', { transactionsPerTest: n })
-    .add(`1`, {
-      before: () => publishMessages({n}),
-      fn: () => consumeMessages({ prefetch: 1, n }),
-      tags: {...env, n: 1 },
-    })
-    .add(`10`, {
-      before: () => publishMessages({n}),
-      fn: () => consumeMessages({ prefetch: 10, n }),
-      tags: {...env, n: 1 },
-    })
-    .add(`100`, {
-      before: () => publishMessages({n}),
-      fn: () => consumeMessages({ prefetch: 100, n }),
-      tags: {...env, n: 1 },
-    })
-    .add(`unlimited`, {
-      before: () => publishMessages({n}),
-      fn: () => consumeMessages({ prefetch: undefined, n }),
-      tags: {...env, n: 1 },
-    })
-    .add(`unlimited noAck`, {
-      before: () => publishMessages({n}),
-      fn: () => consumeMessages({ prefetch: undefined, n, noAck: true }),
-      tags: {...env, n: 1 },
-    })
-    .add(`1 persistent msgs`, {
-      before: () => publishMessages({n, persistent: true}),
-      fn: () => consumeMessages({ prefetch: 1, n }),
-      tags: {...env, n: 1 },
-    })
-    .add(`unlimited persistent msgs`, {
-      before: () => publishMessages({n, persistent: true}),
-      fn: () => consumeMessages({ prefetch: undefined, n }),
-      tags: {...env, n: 1 },
-    })
-    .execute()
-}
+test(`1`, (p) =>
+  consumeMessages({ prefetch: 1, n })
+)
+
+test(`10`, (p) =>
+  consumeMessages({ prefetch: 10, n })
+)
+
+test(`100`, (p) =>
+  consumeMessages({ prefetch: 100, n })
+)
+
+test(`unlimited`, (p) =>
+  consumeMessages({ prefetch: undefined, n })
+)
+
+test(`unlimited noAck`, (p) =>
+  consumeMessages({ prefetch: undefined, n, noAck: true })
+)
+
+test(`1 persistent msgs`, (p) =>
+  consumeMessages({ prefetch: 1, n })
+)
+
+test(`unlimited persistent msgs`, (p) =>
+  consumeMessages({ prefetch: undefined, n })
+)
 
 function publishMessages({n, persistent}) {
   return new Promise((resolve, reject) => {
