@@ -1,0 +1,11 @@
+{"name":"search","test":"exact w/o index","n":1,"runs":30,"env":"unknown","min":"565","max":"928","p95":"902","tps":2}
+{"name":"search","test":"exact w index","n":1,"runs":19463,"env":"unknown","min":"0","max":"7","p95":"1","tps":1298}
+{"name":"search","test":"regex","n":1,"runs":30,"env":"unknown","min":"722","max":"892","p95":"873","tps":1}
+{"name":"search","test":"regex w index","n":1,"runs":30,"env":"unknown","min":"1451","max":"1941","p95":"1877","tps":1}
+{"name":"search","test":"regex ^$","n":1,"runs":30,"env":"unknown","min":"748","max":"1595","p95":"1457","tps":1}
+{"name":"search","test":"regex first 5 chars","n":1,"runs":30,"env":"unknown","min":"762","max":"1302","p95":"1256","tps":1}
+{"name":"search","test":"regex first 5 chars w index","n":1,"runs":30,"env":"unknown","min":"771","max":"1382","p95":"1252","tps":1}
+{"name":"search","test":"regex any 5 chars","n":1,"runs":30,"env":"unknown","min":"745","max":"1725","p95":"1692","tps":1}
+{"name":"search","test":"text search","n":1,"runs":15,"env":"unknown","min":"800","max":"5247","p95":"5247","tps":0}
+{"name":"search","test":"text search first 5 chars","n":1,"runs":120,"env":"unknown","min":"0","max":"356","p95":"264","tps":8}
+{"name":"search","test":"text search exact","n":1,"runs":28,"env":"unknown","min":"355","max":"3015","p95":"2958","tps":0}
