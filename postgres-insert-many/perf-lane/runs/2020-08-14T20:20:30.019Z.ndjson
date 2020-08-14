@@ -1,0 +1,53 @@
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":1,"runs":1000,"env":"unknown","min":2,"max":15,"p95":9,"tps":261}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":5,"runs":1000,"env":"unknown","min":2,"max":77,"p95":6,"tps":1291}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":10,"runs":1000,"env":"unknown","min":2,"max":17,"p95":6,"tps":2597}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":50,"runs":1000,"env":"unknown","min":2,"max":17,"p95":10,"tps":11868}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":100,"runs":1000,"env":"unknown","min":3,"max":13,"p95":11,"tps":20243}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":500,"runs":1000,"env":"unknown","min":5,"max":20,"p95":15,"tps":57504}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":1000,"runs":1000,"env":"unknown","min":6,"max":23,"p95":18,"tps":82974}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":5000,"runs":538,"env":"unknown","min":20,"max":42,"p95":35,"tps":179106}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":10000,"runs":307,"env":"unknown","min":41,"max":66,"p95":58,"tps":204149}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":50000,"runs":65,"env":"unknown","min":192,"max":369,"p95":333,"tps":215660}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":55000,"runs":46,"env":"unknown","min":227,"max":1350,"p95":410,"tps":156792}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":60000,"runs":37,"env":"unknown","min":239,"max":1412,"p95":1361,"tps":144928}
+{"event":"test.complete","name":"batch-insert","test":"batch insert uuids","n":65000,"runs":36,"env":"unknown","min":368,"max":663,"p95":519,"tps":154150}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":1,"runs":1000,"env":"unknown","min":2,"max":87,"p95":9,"tps":283}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":5,"runs":1000,"env":"unknown","min":2,"max":11,"p95":6,"tps":1553}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":10,"runs":1000,"env":"unknown","min":2,"max":16,"p95":9,"tps":2892}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":50,"runs":1000,"env":"unknown","min":2,"max":12,"p95":10,"tps":12980}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":100,"runs":1000,"env":"unknown","min":3,"max":18,"p95":10,"tps":23918}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":500,"runs":1000,"env":"unknown","min":4,"max":19,"p95":13,"tps":66587}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":1000,"runs":1000,"env":"unknown","min":6,"max":25,"p95":17,"tps":89413}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":5000,"runs":515,"env":"unknown","min":21,"max":44,"p95":38,"tps":171598}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":10000,"runs":269,"env":"unknown","min":39,"max":94,"p95":75,"tps":178963}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":50000,"runs":44,"env":"unknown","min":241,"max":1014,"p95":547,"tps":143043}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":55000,"runs":40,"env":"unknown","min":275,"max":915,"p95":855,"tps":145937}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":60000,"runs":47,"env":"unknown","min":267,"max":454,"p95":426,"tps":186533}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 'hello world'","n":65000,"runs":30,"env":"unknown","min":325,"max":1055,"p95":1006,"tps":125945}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":1,"runs":1000,"env":"unknown","min":2,"max":18,"p95":9,"tps":270}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":5,"runs":1000,"env":"unknown","min":2,"max":14,"p95":9,"tps":1420}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":10,"runs":1000,"env":"unknown","min":2,"max":17,"p95":9,"tps":3077}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":50,"runs":1000,"env":"unknown","min":2,"max":18,"p95":9,"tps":13477}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":100,"runs":1000,"env":"unknown","min":2,"max":19,"p95":11,"tps":22080}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":500,"runs":1000,"env":"unknown","min":3,"max":32,"p95":15,"tps":65325}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":1000,"runs":1000,"env":"unknown","min":4,"max":21,"p95":14,"tps":122609}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":5000,"runs":910,"env":"unknown","min":9,"max":34,"p95":25,"tps":303313}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":10000,"runs":509,"env":"unknown","min":15,"max":130,"p95":44,"tps":338927}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":50000,"runs":125,"env":"unknown","min":56,"max":269,"p95":207,"tps":416167}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":55000,"runs":146,"env":"unknown","min":61,"max":308,"p95":171,"tps":533094}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":60000,"runs":139,"env":"unknown","min":77,"max":282,"p95":185,"tps":552757}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":65000,"runs":110,"env":"unknown","min":85,"max":332,"p95":258,"tps":475589}
+{"event":"test.complete","name":"batch-insert","test":"copy uuids","n":100000,"runs":93,"env":"unknown","min":123,"max":344,"p95":214,"tps":616752}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":1,"runs":1000,"env":"unknown","min":2,"max":13,"p95":6,"tps":289}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":5,"runs":1000,"env":"unknown","min":2,"max":16,"p95":9,"tps":1387}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":10,"runs":1000,"env":"unknown","min":2,"max":18,"p95":9,"tps":2787}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":50,"runs":1000,"env":"unknown","min":2,"max":19,"p95":10,"tps":12107}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":100,"runs":1000,"env":"unknown","min":2,"max":28,"p95":11,"tps":20521}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":500,"runs":1000,"env":"unknown","min":4,"max":38,"p95":16,"tps":55797}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":1000,"runs":1000,"env":"unknown","min":6,"max":111,"p95":24,"tps":73986}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":5000,"runs":385,"env":"unknown","min":22,"max":131,"p95":68,"tps":128291}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":10000,"runs":172,"env":"unknown","min":61,"max":357,"p95":124,"tps":114324}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":50000,"runs":35,"env":"unknown","min":307,"max":1255,"p95":609,"tps":115810}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":55000,"runs":30,"env":"unknown","min":351,"max":1472,"p95":1352,"tps":96328}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":60000,"runs":26,"env":"unknown","min":634,"max":3129,"p95":3081,"tps":25250}
+{"event":"test.complete","name":"batch-insert","test":"batch insert 1m","n":65000,"runs":30,"env":"unknown","min":915,"max":3580,"p95":3116,"tps":38740}

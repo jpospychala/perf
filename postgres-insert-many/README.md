@@ -1,30 +1,37 @@
 Question
-========
+--------
 
 What is the difference between inserting single row vs many rows?
 
-Answer
-======
+Findings
+--------
 
-Inserting many rows at once is faster than single row.
+- The more rows inserted in single statement, the less time it takes per row.
+- There's an upper limit of rows inserted at once, above which an error is thrown,
+at least in Node.js postgres client. Doesn't occur with `COPY FILE`
+- Inserting rows from file is even faster
+- As the table size increases, inserts get slower.
 
-The more rows inserted in single statement, the less time it takes per row.
+Data series:
 
-With increased number of rows in table, time required to perform insert increases.
+- batch insert uuids - batch insert random uuids
+- batch insert hello world - inserting same static text every time
+- batch insert uuidss 1m - random uuids, but into table with 1m records
+- copy uuids - `COPY FILE`
+- `n` - number of rows inserted at one batch
 
-![insert tps](report/batch_insert_tps_n_test.svg)
-![insert p95](report/batch_insert_p95_n_test.svg)
-![insert min](report/batch_insert_min_n_test.svg)
-![insert max](report/batch_insert_max_n_test.svg)
+![insert tps](perf-lane/batch-insert_tps_n_unknown.svg)
+![insert p95](perf-lane/batch-insert_p95_n_unknown.svg)
+![insert min](perf-lane/batch-insert_min_n_unknown.svg)
+![insert max](perf-lane/batch-insert_max_n_unknown.svg)
 
 How to rerun the test
-=====================
+---------------------
 
 Prior requirements: docker, make, nodejs
 ```
 $ make install  # installs nodejs dependencies
 $ make prepare  # start postgres docker container
 $ make test     # run tests, run multiple times for bigger data sets
-$ make report   # produce charts from test results
 $ make purge    # cleanup leftover files produced during tests (eg. databases)
 ```

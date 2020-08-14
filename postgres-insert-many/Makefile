@@ -4,21 +4,18 @@ install:
 prepare:
 	mkdir -p postgres-data
 	docker inspect some-postgres >/dev/null || \
-		docker run -d --memory=128m --name some-postgres -p 5433:5432 -e POSTGRES_PASSWORD=pwd -d \
+		docker run -d --name some-postgres -p 5433:5432 -e POSTGRES_PASSWORD=pwd -d \
 			--mount type=bind,source=`pwd`/postgres-data,target=/var/lib/postgresql/data \
+			--mount type=bind,source=`pwd`,target=/test \
 			postgres
 
 test:
-	PGUSER=postgres PGDATABASE=postgres PGPASSWORD=pwd PGPORT=5433 node ./test.js
+	PGUSER=postgres PGDATABASE=postgres PGPASSWORD=pwd PGPORT=5433 node_modules/.bin/perf-lane *.perf.js
 
+.PHONY: report
 report:
-	node ../tools/report.js ./ svg
-
-report_test:
-	node ../tools/report.js ./ png
+	node_modules/.bin/perf-lane -r
 
 purge:
 	docker stop some-postgres
 	docker rm some-postgres
-
-.PHONY: report
