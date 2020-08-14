@@ -6,7 +6,7 @@
   "author": " Jacek Pospychala <jacek.pospychala@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "perf-lane": "^1.0.5",
+    "perf-lane": "^1.0.6",
     "pg": "^8.3.0",
     "uuid": "^3.3.2"
   }
